@@ -8,22 +8,24 @@ window.configStorage = Storage.get 'config'
 $ window .on \mousedown \.jDragHandler !->
     nativeWindow.startMove!
 
-with globalMenu = new Menu
-    Item = Menu.Item
+with globalMenu = new air.NativeMenu
+    Item = air.NativeMenuItem
+    onsel = air.Event.SELECT
+
     calcLabel = -> if nativeWindow.alwaysInFront then '[√]总在最上(T)' else '[x]总在最上(T)'
     @addItem new Item calcLabel!
-        &onselect (e)->
+        &addEventListener onsel, (e)->
             nativeWindow.alwaysInFront = !nativeWindow.alwaysInFront 
             e.currentTarget.label = calcLabel!
         &mnemonicIndex = &label.indexOf 'T'
 
     @addItem new Item '退出(X)'
-        &onselect ->
+        &addEventListener onsel, (e)->
             air.NativeApplication.nativeApplication.exit!
         &mnemonicIndex = &label.indexOf 'X'
 
     $ window .on \contextmenu (e)~>
-        @display e.clientX, e.clientY
+        @display nativeWindow.stage, e.clientX, e.clientY
         false
 
 new air.Loader
@@ -32,7 +34,7 @@ new air.Loader
     &load new air.URLRequest 'res/icon-rev48.png'
 air.NativeApplication.nativeApplication.icon
     &tooltip = "Bangumi Sora"
-    &menu = globalMenu._nMenu
+    &menu = globalMenu
     &addEventListener window.runtime.flash.events.ScreenMouseEvent.MOUSE_DOWN, !(e)->
         nativeWindow.restore!
         nativeWindow.alwaysInFront = !nativeWindow.alwaysInFront 
