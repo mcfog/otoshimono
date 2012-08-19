@@ -1,0 +1,12 @@
+(sys, ..., Storage, Menu)<- define [
+    \sys
+    \vendor/jquery
+    \air/Storage
+    \air/Menu
+]
+
+global = {
+    sys
+    Storage
+    Menu
+}

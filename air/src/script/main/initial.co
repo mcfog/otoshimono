@@ -1,0 +1,27 @@
+require.config do
+    baseUrl: '/script'
+
+(sys)<- require [\sys]
+
+options = new air.NativeWindowInitOptions
+    &systemChrome = air.NativeWindowSystemChrome.NONE
+    &transparent = true
+    &type = air.NativeWindowType.UTILITY
+    &maximizable = false
+    &minimizable = false
+
+new air.NativeWindow options
+    &width = 480; &height = 360
+    &title = "Bangumi Sora"
+    &stage
+        &scaleMode = window.runtime.flash.display.StageScaleMode.NO_SCALE
+        &align = window.runtime.flash.display.StageAlign.TOP_LEFT
+        loader = new air.HTMLLoader
+            &width = 480; &height = 360
+            &paintsDefaultBackground = false
+            &load new air.URLRequest "ukagaka.html"
+        &addChild loader
+        &invalidate!
+    &activate!
+
+window.close!

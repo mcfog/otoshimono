@@ -1,0 +1,10 @@
+<-define [
+    \vendor/AIRAliases 
+    \vendor/AIRIntrospector
+]
+
+{
+    panic: air.trace
+    env: \air
+    console: air.Introspector.Console
+}

@@ -1,0 +1,26 @@
+define -> class Storage
+    (@_name)->
+        @_obj = _get(@_name) || {}
+    get: (name)-> @_obj[name]
+    set: !(name, value)->
+        @_obj[name] = value
+        _set(@_name, @_obj)
+    unset: !(name)->
+        delete @_obj[name]
+        _set(@_name, @_obj)
+
+
+    _get = (name)->
+        with air.EncryptedLocalStore.getItem "$Storage/#{name}"
+            JSON.parse @readUTFBytes @length if @ != window #with null then @===window
+    _set = !(name, value)->
+        with new air.ByteArray
+            @writeUTFBytes JSON.stringify value
+            air.EncryptedLocalStore.setItem "$Storage/#{name}", @
+    _unset = !(name)->
+        air.EncryptedLocalStore.removeItem "$Storage/#{name}"
+
+    pool = {}
+    @get = (name)->
+        return pool[name] if pool[name]
+        pool[name] = new Storage name

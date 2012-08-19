@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://ns.adobe.com/air/application/2.6">
+    <id>com.mcfog.otoshimono.air</id>
+    <versionNumber>0.01</versionNumber>
+    <filename>BangumiSora</filename>
+    <initialWindow>
+        <content>initial.html</content>
+        <width>200</width>
+        <height>200</height>
+        <visible>false</visible>
+    </initialWindow>
+    <icon>
+        <image16x16>res/icon16.png</image16x16>
+        <image48x48>res/icon48.png</image48x48>
+        <image128x128>res/icon.png</image128x128>
+    </icon>
+</application>
