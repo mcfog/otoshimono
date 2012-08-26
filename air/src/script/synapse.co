@@ -1,0 +1,5 @@
+<- define []
+
+signal: (uri, ...args)->
+    (action)<- require ["neuron#{uri}Action"]
+    action.apply this, args

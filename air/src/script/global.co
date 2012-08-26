@@ -1,10 +1,13 @@
-(sys, ..., Storage)<- define [
+(sys, ..., Storage, synapse)<- define [
     \sys
     \vendor/jquery
     \air/Storage
+    \synapse
 ]
 
 global = {
     sys
+    console: sys.console
     Storage
+    synapse
 }

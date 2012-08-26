@@ -57,4 +57,7 @@ with shellConf = (configStorage.get \ukagaka_shell) || {
     , @interval
 
 
+synapse.signal '/auth/check', ->
+    console.log @@
+
 `}`
